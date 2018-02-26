@@ -584,7 +584,7 @@ protocol CallServiceObserver: class {
 
         self.call = newCall
 
-        var backgroundTask = OWSBackgroundTask(label:"\(#function)", completionBlock: { [weak self] status in
+        var backgroundTask: OWSBackgroundTask? = OWSBackgroundTask(label: "\(#function)", completionBlock: { [weak self] status in
             AssertIsOnMainThread()
 
             guard status == .expired else {
@@ -1450,7 +1450,7 @@ protocol CallServiceObserver: class {
     public func handleFailedCall(failedCall: SignalCall?, error: CallError) {
         AssertIsOnMainThread()
 
-        if case CallError.assertionError(description:let description) = error {
+        if case CallError.assertionError(description: let description) = error {
             owsFail(description)
         }
 
